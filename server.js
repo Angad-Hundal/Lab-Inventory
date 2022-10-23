@@ -1,20 +1,39 @@
 const express = require('express')
+const mySql = require("mysql");
+const bodyParser = require("body-parser");
+const fs = require('fs')
+
+
 var path = require("path")
 
+
+const PORT = 3100
 const app = express()
-const port = 3100
+const HOST = '0.0.0.0';
 
-app.set('view engine', 'html');
-app.engine('html', require('ejs').renderFile)
 
-app.get('/', (req, res) => {
-  
-    res.render('home.html')
+
+const pool = mySql.createPool({
+  connectionLimit: 100,
+  database: "sakila",
+  host: "localhost",
+  user: "root",
+  password: "12345"
 })
 
 
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+
+app.get('/', (req,res) => {
+
+  pool.getConnection((err, connection) => {
+
+    if (err) throw err;
+    console.log("CONNECTED")
+  })
 })
+
+
+
+app.listen(PORT, () => {}) 

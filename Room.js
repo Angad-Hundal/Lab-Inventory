@@ -55,6 +55,5 @@ class Room extends Searchable{
     getName() {
         return this.name;
     }
-
     
 }

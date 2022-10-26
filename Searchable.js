@@ -3,5 +3,19 @@ class Searchable {
         this.name = name;
     }
 
+    searchByProductName() {
+    }
+
+    searchBySupplier() {
+    }
+
+    searchByRoom() {
+    }
+
+    searchByCourse() {
+    }
+
+    searchByDepartment() {
+    }
     
 }

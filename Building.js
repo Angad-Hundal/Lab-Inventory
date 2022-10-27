@@ -1,5 +1,5 @@
 import Searchable from "./Searchable.js";
-import Room from "./Room.js";
+import Room from "./Room.js"; // will use this to verify types later (javascript is highly dynamic, it has to be done manually)
 
 class Building extends Searchable {
     // class constructor takes the name of the building

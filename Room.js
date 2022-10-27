@@ -22,6 +22,7 @@ class Room extends Searchable{
     // returns an array of all items with a particular name
     getItemByName(name) {
         let returnArray = [];
+        // loops through every item in the room
         for (let current in this.itemList) {
             if (current.name = name) {
                 returnArray.push(current);
@@ -33,6 +34,7 @@ class Room extends Searchable{
     // gets all items whos quantity is below a threshold
     getLowItems() {
         let returnArray = [];
+        // loops through every item in the room
         for (let current in this.itemList) {
             if (current.getQuantity < current.getMin) {
                 returnArray.push(current);
@@ -44,6 +46,7 @@ class Room extends Searchable{
     // gets all items whos quantity is zero
     getZeroItems() {
         let returnArray = [];
+        // loops through every item in the room
         for (let current in this.itemList) {
             if (current.getQuantity == 0) {
                 returnArray.push(current);

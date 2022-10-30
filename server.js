@@ -5,7 +5,7 @@ var path = require("path");
 const fs = require('fs')
 
 
-const PORT = 3650
+const PORT = 3660
 const app = express()
 const HOST = '127.0.0.1';
 
@@ -29,7 +29,7 @@ const pool = mySql.createPool({
 
 // display items page
 app.get('/', (req, res) => {
-  res.redirect("/items.html");
+  res.redirect("/search.html");
 })
 
 
@@ -45,24 +45,17 @@ app.get('/', (req,res) => {
 })
 
 
+
 // items.html
 // Add item to mysql
 app.post('/items', (req, res)=> {
-   console.log("Get ready for posting");
 
    const dataForm = req.body;
-   console.log(req.body);
 
    var id = req.body.id;
    var name = req.body.name;
    var quantity = req.body.quantity;
    var units = req.body.units;
-
-   console.log(id)
-   console.log(name)
-   console.log(quantity)
-   console.log(units)
-
 
    pool.getConnection((err, connection) => {
     if (err) throw err;
@@ -76,6 +69,33 @@ app.post('/items', (req, res)=> {
         }
     })
 }) }) 
+
+
+
+
+// used in search.html
+// get all the rows from inventory 
+app.get('/getinventory', (req, res) => {
+
+  console.log("CONNECTED");
+
+  pool.getConnection((err, connection) => {
+
+      if (err) throw err;
+      console.log("CONNECTION ESTABLISHED");
+
+      connection.query('SELECT * FROM inventory', (err, rows) => {
+          connection.release();
+
+          if (!err) {
+              res.send({ rows });
+          }
+          else {
+              console.log(err);
+          }
+      })
+  })
+})
 
   
 

@@ -13,21 +13,43 @@
 
 <br> </br>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
 <body>
 
-    <script type="text/javascript">
+    <div>
+        <label> Current Month Spent: </label>
+        <label> 100</label>
+    </div>
+    <br>
 
+    <div>
+        <label> Current Year Spent: </label>
+        <label> 3600</label>
+    </div>
+    <br>
 
+    <canvas id="expenseChart" style="width:100%;max-width:700px"></canvas>
 
+    <script>
+        var xValues = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+        var yValues = [1000, 500, 650, 200, 100, 200, 350, 100, 0, 0, 100, 400];
+        var barColors = 'blue';
+
+        new Chart("expenseChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+            }
+        });
     </script>
-
-    <h2>Warnings!</h2>
-    <!--Insert warnings here -->
-    <div> </div>
-
-    <h2> Graphs: </h2>
-    <!-- Insert graphs here -->
-    <div> </div>
 
 </body>
 

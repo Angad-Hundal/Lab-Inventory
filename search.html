@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+</head>
+
+
+<br><br>
+
+
+<body>
+
+    <script type="text/javascript">
+
+        function search() {
+            var http = new XMLHttpRequest();
+            var url = '/getinventory';
+
+
+            http.open('GET', url, true);
+             http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+             http.addEventListener('error', function (event) {
+                alert ("something went wrong while getting");
+             });
+
+
+             http.onreadystatechange = function() { 
+                if(http.readyState == 4 && http.status == 200) {
+             
+                    var inventoryItem = http.responseText;
+                
+                    var obj = JSON.parse(inventoryItem);  // dict with one value and key is rows
+                    array_of_dict = obj["rows"]      // array of dict
+        
+
+                    const search_by = document.getElementById("search_by").value
+                    const value_search = document.getElementById("value_search").value
+
+                    table = document.getElementById("table");
+                    t_row = 1
+
+
+                    for (var i = 0; i < array_of_dict.length; i++){
+                        
+
+                        temp_id = array_of_dict[i]["id"]
+                        temp_name = array_of_dict[i]["name"]
+                        
+
+                        if (search_by=="id" && value_search==temp_id) {
+
+
+
+                            // for each value inside dict
+                            table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                            table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
+                            table.rows[t_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                            table.rows[t_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                            table.rows[t_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                            table.rows[t_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                            table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                            table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                            table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["supplier"]
+
+                            t_row = t_row + 1
+
+                        }
+
+
+                        if (search_by=="name" && value_search == temp_name){
+
+
+                            // for each value inside dict
+                            table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                            table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
+                            table.rows[t_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                            table.rows[t_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                            table.rows[t_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                            table.rows[t_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                            table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                            table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                            table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["supplier"]
+
+                            t_row = t_row + 1
+
+
+
+                            t_row = t_row + 1
+
+                        }
+
+                    }
+           	}
+    };
+
+    http.send();
+        }
+
+        search();
+
+
+    </script>
+
+    <div>
+        <label for="search_by">Search By: </label>
+
+        <select name="search_by" id="search_by">
+            <option value="id"> Product Id </option>
+            <option value="name"> Name </option>
+        </select>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="value_search"> Value Search: </label>
+        <input id="value_search" type="text">
+    </div>
+    <br>
+
+    <div>
+        <button onclick="search()"> Search </button>
+    </div>
+
+
+    <h3> Search Result:  </h3>
+
+
+    <table id="table" border="2">
+
+        <!-- ROW 0 That is the heading -->
+        <tr id="ttr">
+            <th>ID</th>
+            <th>NAME</th>
+            <th>Quantity</th>
+            <th>Units</th>
+            <th>Description</th>
+            <th>Log Number</th>
+            <th>Courses</th>
+            <th>Comments</th>
+            <th>Room</th>
+            <th>Supplier</th>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+
+    </table>
+
+
+
+    <div id="inventory"> </div>
+
+</body>
+
+</html>

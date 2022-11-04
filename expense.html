@@ -32,6 +32,7 @@
     <canvas id="expenseChart" style="width:100%;max-width:700px"></canvas>
 
     <script>
+        /*
         var xValues = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
         var yValues = [1000, 500, 650, 200, 100, 200, 350, 100, 0, 0, 100, 400];
         var barColors = 'blue';
@@ -49,7 +50,11 @@
                 legend: { display: false },
             }
         });
+        */
 
+
+        // global variable that will hold the expense data of the year we select later
+        let yearlyExpenses = [];
 
         function getExpenseData() {
             var http = new XMLHttpRequest;
@@ -62,21 +67,15 @@
             });
 
             http.onreadystatechange = function() { 
+                console.log("function runnung");
                 if(http.readyState == 4 && http.status == 200) {
                     var expenses = http.responseText;
 
                     var object = JSON.parse(expenses);
                     var rows_of_consupmtion_table = object["rows"];
 
-                    targetYear = 0; // select which year to make a graph of, here using the oldest  year (row 0)
-                    yearlyExpenses = []; // array to hold the data from the year selected
+                    let targetYear = 0; // select which year to make a graph of, here using the oldest  year (row 0)
 
-                    /*
-                    // loop through the first 12 columns of a row, which contain the expenses from each monch of a certain year
-                    for (let i = 0; i < 12; i ++) {
-                        targetYear[i] = rows_of_consupmtion_table[targetYear][]
-                    }
-                    */
 
                     // fill the yearlyExpenses array with the expenses for each month of the target year
                     yearlyExpenses[0]  = rows_of_consupmtion_table[targetYear]["Jan"];
@@ -92,9 +91,12 @@
                     yearlyExpenses[10] = rows_of_consupmtion_table[targetYear]["Nov"];
                     yearlyExpenses[11] = rows_of_consupmtion_table[targetYear]["Dec"];
 
+
+
                 }
             }
 
+            
             // set bar graph parameters
             var xValues = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
             var barColors = "Blue";
@@ -113,12 +115,14 @@
                     legend: { display: false },
                 }
             });
+            
 
 
             http.send;
         }
-    </script>
 
+        getExpenseData();
+    </script>
 </body>
 
 </html>

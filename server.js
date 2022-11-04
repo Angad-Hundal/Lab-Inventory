@@ -100,6 +100,7 @@ app.get('/getinventory', (req, res) => {
 
 
 
+// pull all data from the expenses table
 app.get("/getexpensedata", (req, res) => {
 
   pool.getConnection((err, connection) => {

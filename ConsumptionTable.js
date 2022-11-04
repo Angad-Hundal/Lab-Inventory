@@ -28,3 +28,19 @@ window.onload = function createTable() {
     document.body.appendChild(table);
     table.setAttribute("style", "width:90%");
 }
+
+
+function getUsage() {
+    let http = new XMLHttpRequest();
+    let url = "./getusage"
+
+    http.open('GET', url, true);
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http.addEventListener('error', function (event) { alert ("something went wrong while getting"); });
+
+    http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+            let table = http.responseText;
+        }
+    }
+}

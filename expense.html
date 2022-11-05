@@ -67,7 +67,6 @@
             });
 
             http.onreadystatechange = function() { 
-                console.log("function runnung");
                 if(http.readyState == 4 && http.status == 200) {
                     var expenses = http.responseText;
 
@@ -118,7 +117,7 @@
             
 
 
-            http.send;
+            http.send();
         }
 
         getExpenseData();

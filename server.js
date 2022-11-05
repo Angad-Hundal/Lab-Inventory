@@ -5,7 +5,7 @@ var path = require("path");
 const fs = require('fs')
 
 
-const PORT = 3670
+const PORT = 3680
 const app = express()
 const HOST = '127.0.0.1';
 
@@ -29,7 +29,7 @@ const pool = mySql.createPool({
 
 // display items page
 app.get('/', (req, res) => {
-  res.redirect("/all.html");
+  res.redirect("/search.html");
 })
 
 
@@ -96,7 +96,6 @@ app.get('/getinventory', (req, res) => {
       })
   })
 })
-
   
 
 

@@ -40,8 +40,13 @@
                     const search_by = document.getElementById("search_by").value
                     const value_search = document.getElementById("value_search").value
 
-                    table = document.getElementById("table");
+                    
+
+                
                     t_row = 1
+                
+                    table = document.getElementById("table");
+                    delete_row();
 
 
                     for (var i = 0; i < array_of_dict.length; i++){
@@ -49,12 +54,11 @@
 
                         temp_id = array_of_dict[i]["id"]
                         temp_name = array_of_dict[i]["name"]
+                        temp_room = array_of_dict[i]["room"]
+                        temp_suplier = array_of_dict[i]["suplier"]
                         
 
                         if (search_by=="id" && value_search==temp_id) {
-
-
-
                             // for each value inside dict
                             table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
                             table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
@@ -65,16 +69,13 @@
                             table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
                             table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
                             table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
-                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["supplier"]
-
-                            t_row = t_row + 1
-
+                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
+                            table.rows[t_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
+                            table.rows[t_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
                         }
 
 
                         if (search_by=="name" && value_search == temp_name){
-
-
                             // for each value inside dict
                             table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
                             table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
@@ -85,14 +86,86 @@
                             table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
                             table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
                             table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
-                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["supplier"]
+                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
+                            table.rows[t_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
+                            table.rows[t_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
 
-                            t_row = t_row + 1
+                        }
 
 
+                        if (search_by=="room" && value_search == temp_room){
+                            // for each value inside dict
+                            table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                            table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
+                            table.rows[t_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                            table.rows[t_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                            table.rows[t_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                            table.rows[t_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                            table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                            table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                            table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
+                            table.rows[t_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
+                            table.rows[t_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
 
-                            t_row = t_row + 1
 
+                            if (i<array_of_dict.length - 1){
+                                t_row = t_row + 1;
+
+                                 var newRow = table.insertRow(table.length);
+
+                                var cell0 = newRow.insertCell(0);
+                                var cell1 = newRow.insertCell(1);
+                                var cell2 = newRow.insertCell(2);
+                                var cell3 = newRow.insertCell(3);
+                                var cell4 = newRow.insertCell(4);
+                                var cell5 = newRow.insertCell(5);
+                                var cell6 = newRow.insertCell(6);
+                                var cell7 = newRow.insertCell(7);
+                                var cell8 = newRow.insertCell(8);
+                                var cell9 = newRow.insertCell(9);
+                                var cell10 = newRow.insertCell(10);
+                                var cell11 = newRow.insertCell(11);
+
+                            }
+                        }
+
+
+                        if (search_by=="suplier" && value_search == temp_suplier){
+                            // for each value inside dict
+                            table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                            table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
+                            table.rows[t_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                            table.rows[t_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                            table.rows[t_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                            table.rows[t_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                            table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                            table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                            table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
+                            table.rows[t_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
+                            table.rows[t_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
+
+
+                            if (i<array_of_dict.length - 1){
+                                t_row = t_row + 1;
+
+                                 var newRow = table.insertRow(table.length);
+
+                                var cell0 = newRow.insertCell(0);
+                                var cell1 = newRow.insertCell(1);
+                                var cell2 = newRow.insertCell(2);
+                                var cell3 = newRow.insertCell(3);
+                                var cell4 = newRow.insertCell(4);
+                                var cell5 = newRow.insertCell(5);
+                                var cell6 = newRow.insertCell(6);
+                                var cell7 = newRow.insertCell(7);
+                                var cell8 = newRow.insertCell(8);
+                                var cell9 = newRow.insertCell(9);
+                                var cell10 = newRow.insertCell(10);
+                                var cell11 = newRow.insertCell(11);
+
+                            }
                         }
 
                     }
@@ -100,6 +173,18 @@
     };
 
     http.send();
+        }
+
+
+        function delete_row(){
+
+            table = document.getElementById("table");
+
+            for ( var i=2; i<table.rows.length; i++){
+
+                table.deleteRow(i)
+            }
+
         }
 
         search();
@@ -113,6 +198,8 @@
         <select name="search_by" id="search_by">
             <option value="id"> Product Id </option>
             <option value="name"> Name </option>
+            <option value="room"> Room </option>
+            <option value="suplier"> Suplier </option>
         </select>
     </div>
 
@@ -146,9 +233,13 @@
             <th>Comments</th>
             <th>Room</th>
             <th>Supplier</th>
+            <th>Recommended Quantity</th>
+            <th>Cost per item</th>
         </tr>
 
         <tr>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>

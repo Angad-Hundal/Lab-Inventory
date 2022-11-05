@@ -57,6 +57,8 @@ var http = new XMLHttpRequest();
                         table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
                         table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
                         table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
+                        table.rows[t_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
+                        table.rows[t_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
 
                         t_row = t_row + 1;
 
@@ -72,6 +74,8 @@ var http = new XMLHttpRequest();
                         var cell7 = newRow.insertCell(7);
                         var cell8 = newRow.insertCell(8);
                         var cell9 = newRow.insertCell(9);
+                        var cell10 = newRow.insertCell(10);
+                        var cell11 = newRow.insertCell(11);
 
                     }
            	}
@@ -98,9 +102,13 @@ var http = new XMLHttpRequest();
         <th>Comments</th>
         <th>Room</th>
         <th>Supplier</th>
+        <th>Recommended Quantity</th>
+        <th>Cost per item</th>
     </tr>
 
     <tr>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

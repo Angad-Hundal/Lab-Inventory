@@ -54,11 +54,11 @@
 
 
         // global variable that will hold the expense data of the year we select later
-        let yearlyExpenses = [];
+        let yearlyExpenses = [1000, 500, 650, 200, 100, 200, 350, 100, 0, 0, 100, 400];
 
         function getExpenseData() {
             var http = new XMLHttpRequest;
-            var url = "./getexpensedata"
+            var url = "/getexpensedata"
 
             http.open("GET", url, true);
             http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

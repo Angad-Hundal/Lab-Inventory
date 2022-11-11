@@ -19,7 +19,7 @@
         var http = new XMLHttpRequest();
         var url = '/items';
 
-        var params ='id=' + document.getElementById("id").value + '&name=' + document.getElementById("name").value+ '&quantity=' + document.getElementById("quantity").value + '&units=' + document.getElementById("units").value;
+        var params ='id=' + document.getElementById("id").value + '&name=' + document.getElementById("name").value+ '&quantity=' + document.getElementById("quantity").value + '&units=' + document.getElementById("units").value  + '&description=' + document.getElementById("description").value  + '&log_number=' + document.getElementById("log_number").value + '&courses=' + document.getElementById("courses").value + '&comments=' + document.getElementById("comments").value + '&room=' + document.getElementById("room").value + '&suplier=' + document.getElementById("suplier").value + '&recommended_quantity=' + document.getElementById("recommended_quantity").value + '&cost=' + document.getElementById("cost").value;
         http.open('POST', url, true);
         console.log(params);
 
@@ -52,6 +52,8 @@
     </script>
 
 
+    <h2> ADD ITEM (all values required): </h2>
+
     <div>
     <label for="id"> ID: </label>
     <input id="id" type="number">
@@ -77,7 +79,60 @@
     <input id="units" type="text">
     </div>
     <br>
+
+
+    <div>
+    <label for="description"> Decription: </label>
+    <input id="description" type="text">
+    </div>
+    <br>
+
+    <div>
+    <label for="log_number"> Log Number: </label>
+    <input id="log_number" type="number">
+    </div>
+    <br>
+
+    <div>
+    <label for="courses"> Courses: </label>
+    <input id="courses" type="text">
+    </div>
+    <br>
+
+
+    <div>
+    <label for="comments"> Comments: </label>
+    <input id="comments" type="text">
+    </div>
+    <br>
     
+
+    <div>
+    <label for="room"> Room Number: </label>
+    <input id="room" type="text">
+    </div>
+    <br>
+
+
+    <div>
+    <label for="suplier"> Supplier: </label>
+    <input id="suplier" type="text">
+    </div>
+    <br>
+
+    <div>
+    <label for="recommended_quantity"> Recommended Quantity: </label>
+    <input id="recommended_quantity" type="number">
+    </div>
+    <br>
+
+
+    <div>
+    <label for="cost"> Cost: </label>
+    <input id="cost" type="number">
+    </div>
+    <br>
+
 
     <button  onclick= "post()" > Add item </button>
 </body>

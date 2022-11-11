@@ -1,0 +1,224 @@
+<!Doctype html>
+<html lang="en"> 
+
+<!-- ALL MADE BY PALLAVI -->
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+</head>
+
+
+<br><br>
+
+
+<body>
+
+    <script type="text/javascript">
+
+        function sort_fn(){
+            var http = new XMLHttpRequest();
+            var url = '/getinventory';
+
+            http.open('GET', url, true);
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            http.addEventListener('error', function (event) {
+                alert ("something went wrong while getting");
+            });
+
+            http.onreadystatechange = function() { 
+                if(http.readyState == 4 && http.status == 200) {
+                    var inventoryItem = http.responseText;
+
+                    var obj = JSON.parse(inventoryItem);  // dict with one value and key is rows
+                    array_of_dict = obj["rows"]      // array of dict
+
+                    const sort_by = document.getElementById("sort_by").value
+                    
+                    table = document.getElementById("table");
+                    t_row = 1
+
+                    for (var i = 0; i < array_of_dict.length; i++){
+                        
+
+                        temp_id = array_of_dict[i]["id"]
+                        temp_name = array_of_dict[i]["name"]
+                   
+                    
+                        if (sort_by=="id" && value_search==temp_id) {
+
+
+
+                            // for each value inside dict
+                            table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                            table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
+                            table.rows[t_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                            table.rows[t_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                            table.rows[t_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                            table.rows[t_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                            table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                            table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                            table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["supplier"]
+
+                            t_row = t_row + 1
+
+                        }
+
+
+                        if (sort_by=="name" && value_search == temp_name){
+
+
+                            // for each value inside dict
+                            table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                            table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
+                            table.rows[t_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                            table.rows[t_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                            table.rows[t_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                            table.rows[t_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                            table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                            table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                            table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                            table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["supplier"]
+
+                            t_row = t_row + 1
+
+
+
+                            t_row = t_row + 1
+
+                        }
+                    }
+
+                }
+            }
+
+        }    
+
+            var http = new XMLHttpRequest();
+            var url = '/getinventory';
+
+
+            http.open('GET', url, true);
+             http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+             http.addEventListener('error', function (event) {
+                alert ("something went wrong while getting");
+             });
+
+
+             http.onreadystatechange = function() { 
+                if(http.readyState == 4 && http.status == 200) {
+             
+                    var inventoryItem = http.responseText;
+                
+                    var obj = JSON.parse(inventoryItem);  // dict with one value and key is rows
+                    array_of_dict = obj["rows"]      // array of dict
+    
+
+                    table = document.getElementById("table");
+                    t_row = 1
+
+
+                    for (var i = 0; i < array_of_dict.length; i++){
+                        
+
+                        table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                        table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
+                        table.rows[t_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                        table.rows[t_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                        table.rows[t_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                        table.rows[t_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                        table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                        table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                        table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                        table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
+
+                        t_row = t_row + 1;
+
+                        var newRow = table.insertRow(table.length);
+
+                        var cell0 = newRow.insertCell(0);
+                        var cell1 = newRow.insertCell(1);
+                        var cell2 = newRow.insertCell(2);
+                        var cell3 = newRow.insertCell(3);
+                        var cell4 = newRow.insertCell(4);
+                        var cell5 = newRow.insertCell(5);
+                        var cell6 = newRow.insertCell(6);
+                        var cell7 = newRow.insertCell(7);
+                        var cell8 = newRow.insertCell(8);
+                        var cell9 = newRow.insertCell(9);
+
+                    }
+           	}
+    };
+
+    http.send();
+
+    sort_fn();
+
+ </script>
+
+
+<h2> ALL ITEMS: </h2>
+<div>
+    <label for="sort_by">Sort By: </label>
+
+    <select name="sort_by" id="sort_by">
+        <option value="id"> Product Id </option>
+        <option value="name"> Name </option>
+    </select>
+</div>
+<br>    
+<div>
+    <label for="order_by">Order By: </label>
+
+    <select order="order" id="order_by">
+        <option value="ascending"> Ascending </option>
+        <option value="descending"> Descending </option>
+    </select>
+</div>
+</br>
+<div>
+    <button onclick="sort_fn()"> Sort </button>
+</div>
+</br>
+
+<table id="table" border="2">
+
+    <!-- ROW 0 That is the heading -->
+    <tr id="ttr">
+        <th>ID</th>
+        <th>NAME</th>
+        <th>Quantity</th>
+        <th>Units</th>
+        <th>Description</th>
+        <th>Log Number</th>
+        <th>Courses</th>
+        <th>Comments</th>
+        <th>Room</th>
+        <th>Supplier</th>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+
+</table>
+
+
+
+</body>
+
+</html>

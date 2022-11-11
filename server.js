@@ -96,6 +96,30 @@ app.get('/getinventory', (req, res) => {
       })
   })
 })
+
+
+
+
+// pull all data from the expenses table
+app.get("/getexpensedata", (req, res) => {
+
+  pool.getConnection((err, connection) => {
+
+    if (err) throw err;
+
+    connection.query("SELECT * FROM expenses", (err, rows) => {
+        connection.release();
+
+        if (!err) {
+          res.send({rows});
+        }
+        else {
+          console.log(err);
+        }
+      })
+    })
+})
+
   
 
 

@@ -5,9 +5,9 @@ var path = require("path");
 const fs = require('fs')
 
 
-const PORT = 3680
+const PORT = 3670
 const app = express()
-const HOST = '127.0.0.1';
+const HOST = '10.0.0.145';
 
 
 
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 const pool = mySql.createPool({
   connectionLimit: 100,
   database: "mydb",
-  host: "localhost",
+  host: "10.0.0.145",
   user: "root",
   password: "12345"
 })
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
 
   pool.getConnection((err, connection) => {
 
@@ -48,27 +48,28 @@ app.get('/', (req,res) => {
 
 // items.html
 // Add item to mysql
-app.post('/items', (req, res)=> {
+app.post('/items', (req, res) => {
 
-   const dataForm = req.body;
+  const dataForm = req.body;
 
-   var id = req.body.id;
-   var name = req.body.name;
-   var quantity = req.body.quantity;
-   var units = req.body.units;
+  var id = req.body.id;
+  var name = req.body.name;
+  var quantity = req.body.quantity;
+  var units = req.body.units;
 
-   pool.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log("CONNECTION ESTABLISHED")
 
     connection.query('INSERT INTO inventory SET ?', dataForm, (err, rows) => {
-        connection.release();
+      connection.release();
 
-        if (err) {
-            console.log(err);
-        }
+      if (err) {
+        console.log(err);
+      }
     })
-}) }) 
+  })
+})
 
 
 
@@ -81,19 +82,19 @@ app.get('/getinventory', (req, res) => {
 
   pool.getConnection((err, connection) => {
 
-      if (err) throw err;
-      console.log("CONNECTION ESTABLISHED");
+    if (err) throw err;
+    console.log("CONNECTION ESTABLISHED");
 
-      connection.query('SELECT * FROM inventory', (err, rows) => {
-          connection.release();
+    connection.query('SELECT * FROM inventory', (err, rows) => {
+      connection.release();
 
-          if (!err) {
-              res.send({ rows });
-          }
-          else {
-              console.log(err);
-          }
-      })
+      if (!err) {
+        res.send({ rows });
+      }
+      else {
+        console.log(err);
+      }
+    })
   })
 })
 
@@ -108,19 +109,19 @@ app.get("/getexpensedata", (req, res) => {
     if (err) throw err;
 
     connection.query("SELECT * FROM expenses", (err, rows) => {
-        connection.release();
+      connection.release();
 
-        if (!err) {
-          res.send({rows});
-        }
-        else {
-          console.log(err);
-        }
-      })
+      if (!err) {
+        res.send({ rows });
+      }
+      else {
+        console.log(err);
+      }
     })
+  })
 })
 
-  
+
 
 
 app.use('/', express.static(__dirname));

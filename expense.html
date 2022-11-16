@@ -71,7 +71,7 @@
                     var expenses = http.responseText;
 
                     var object = JSON.parse(expenses);
-                    var rows_of_consupmtion_table = object["rows"];
+                    var rows_of_table = object["rows"];
 
                     let targetYear = 0; // select which year to make a graph of, here using the oldest  year (row 0)
 

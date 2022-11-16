@@ -41,6 +41,11 @@ function getUsage() {
     http.onreadystatechange = function() {
         if (http.readyState == 4 && http.status == 200) {
             let table = http.responseText;
+
+            let object = JSON.parse(table);
+            let rows_of_consumption_table = object["rows"];
+
+            
         }
     }
 }

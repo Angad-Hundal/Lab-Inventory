@@ -60,4 +60,7 @@ function getUsage() {
             createTable(rows_of_consumption_table);
         }
     }
+    http.send();
 }
+
+getUsage();

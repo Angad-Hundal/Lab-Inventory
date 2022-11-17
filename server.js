@@ -7,7 +7,7 @@ const fs = require('fs')
 
 const PORT = 3670
 const app = express()
-const HOST = '10.0.0.145';
+const HOST = '174.2.74.56';
 
 
 
@@ -20,9 +20,9 @@ app.use(bodyParser.json());
 const pool = mySql.createPool({
   connectionLimit: 100,
   database: "mydb",
-  host: "10.0.0.145",
+  host: "174.2.74.56",
   user: "root",
-  password: "12345"
+  password: "cmpt370pass"
 })
 
 

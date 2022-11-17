@@ -1,11 +1,14 @@
+console.log("file accessed");
+
 function createTable(row_data) {
+    console.log("creating table");
     // create the <table> element
     const table = document.createElement("table");
     const tableBody = document.createElement("tbody");
 
     // create the table headers
     const topRow = document.createElement("tr");
-    const headerContent = ["Item ID", "Item Name", "Room", "Quantity Removed", "Quantity Left", "Date Removed", "User"]
+    const headerContent = ["Item ID", "Item Name", "Room", "Quantity Removed", "Quantity Left", "Date Removed", "User ID"]
     const numColumns = headerContent.length;
     for (i = 0; i < numColumns; i++) {
         const header = document.createElement("th");
@@ -18,6 +21,7 @@ function createTable(row_data) {
     // get the number of rows from the server (for now assume 0)
     numRows = row_data.length;
     
+    console.log("number of rows:" + numRows);
     // create rows
     for (let i = 0; i < numRows; i++) {
         const row = document.createElement("tr");
@@ -25,10 +29,11 @@ function createTable(row_data) {
         // fill an individual row with data
         for (j = 0; j < numColumns; j++) {
             const dataItem = document.createElement("td");
-            const contents = document.createTextNode(row_data[i][j]);
+            const contents = document.createTextNode(row_data[i][headerContent[j]]);
             dataItem.appendChild(contents);
             row.appendChild(dataItem);
         }
+        console.log("row data:" + row_data[0][0]);
         tableBody.appendChild(row);
     } 
 
@@ -41,8 +46,10 @@ function createTable(row_data) {
 
 
 function getUsage() {
+
+    console.log("Get usage working")
     let http = new XMLHttpRequest();
-    let url = "./getusage"
+    let url = "/getusage"
 
     http.open('GET', url, true);
     http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -51,6 +58,8 @@ function getUsage() {
     http.onreadystatechange = function() {
         if (http.readyState == 4 && http.status == 200) {
             let table = http.responseText;
+
+            console.log("ready state changed");
 
             let object = JSON.parse(table);
             let rows_of_consumption_table = object["rows"];

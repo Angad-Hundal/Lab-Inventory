@@ -32,29 +32,10 @@
     <canvas id="expenseChart" style="width:100%;max-width:700px"></canvas>
 
     <script>
-        /*
-        var xValues = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-        var yValues = [1000, 500, 650, 200, 100, 200, 350, 100, 0, 0, 100, 400];
-        var barColors = 'blue';
-
-        new Chart("expenseChart", {
-            type: "bar",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues
-                }]
-            },
-            options: {
-                legend: { display: false },
-            }
-        });
-        */
 
 
         // global variable that will hold the expense data of the year we select later
-        let yearlyExpenses = [1000, 500, 650, 200, 100, 200, 350, 100, 0, 0, 100, 400];
+        let yearlyExpenses = [0, 0, 650, 200, 100, 200, 350, 100, 0, 0, 100, 400];
 
         function getExpenseData() {
             var http = new XMLHttpRequest;
@@ -70,33 +51,33 @@
                 if(http.readyState == 4 && http.status == 200) {
                     var expenses = http.responseText;
 
+                    console.log("state changed");
+                    console.log(yearlyExpenses);
+
                     var object = JSON.parse(expenses);
-                    var rows_of_consupmtion_table = object["rows"];
+                    var rows_of_table = object["rows"];
 
                     let targetYear = 0; // select which year to make a graph of, here using the oldest  year (row 0)
 
 
                     // fill the yearlyExpenses array with the expenses for each month of the target year
-                    yearlyExpenses[0]  = rows_of_consupmtion_table[targetYear]["Jan"];
-                    yearlyExpenses[1]  = rows_of_consupmtion_table[targetYear]["Feb"];
-                    yearlyExpenses[2]  = rows_of_consupmtion_table[targetYear]["Mar"];
-                    yearlyExpenses[3]  = rows_of_consupmtion_table[targetYear]["Apr"];
-                    yearlyExpenses[4]  = rows_of_consupmtion_table[targetYear]["May"];
-                    yearlyExpenses[5]  = rows_of_consupmtion_table[targetYear]["Jun"];
-                    yearlyExpenses[6]  = rows_of_consupmtion_table[targetYear]["Jul"];
-                    yearlyExpenses[7]  = rows_of_consupmtion_table[targetYear]["Aug"];
-                    yearlyExpenses[8]  = rows_of_consupmtion_table[targetYear]["Sept"];
-                    yearlyExpenses[9]  = rows_of_consupmtion_table[targetYear]["Oct"];
-                    yearlyExpenses[10] = rows_of_consupmtion_table[targetYear]["Nov"];
-                    yearlyExpenses[11] = rows_of_consupmtion_table[targetYear]["Dec"];
+                    yearlyExpenses[0]  = rows_of_table[targetYear]["Jan"];
+                    yearlyExpenses[1]  = rows_of_table[targetYear]["Feb"];
+                    yearlyExpenses[2]  = rows_of_table[targetYear]["Mar"];
+                    yearlyExpenses[3]  = rows_of_table[targetYear]["Apr"];
+                    yearlyExpenses[4]  = rows_of_table[targetYear]["May"];
+                    yearlyExpenses[5]  = rows_of_table[targetYear]["Jun"];
+                    yearlyExpenses[6]  = rows_of_table[targetYear]["Jul"];
+                    yearlyExpenses[7]  = rows_of_table[targetYear]["Aug"];
+                    yearlyExpenses[8]  = rows_of_table[targetYear]["Sept"];
+                    yearlyExpenses[9]  = rows_of_table[targetYear]["Oct"];
+                    yearlyExpenses[10] = rows_of_table[targetYear]["Nov"];
+                    yearlyExpenses[11] = rows_of_table[targetYear]["Dec"];
 
 
+                    console.log(yearlyExpenses);
 
-                }
-            }
-
-            
-            // set bar graph parameters
+                    // set bar graph parameters
             var xValues = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
             var barColors = "Blue";
 
@@ -114,6 +95,11 @@
                     legend: { display: false },
                 }
             });
+
+                }
+            }
+
+            
             
 
 

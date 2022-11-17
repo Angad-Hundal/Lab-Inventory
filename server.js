@@ -7,8 +7,7 @@ const fs = require('fs')
 
 const PORT = 3697
 const app = express()
-const HOST = '174.2.74.56';
-//const HOST = '10.0.0.145';
+const HOST = '10.0.0.145';
 
 
 
@@ -21,10 +20,9 @@ app.use(bodyParser.json());
 const pool = mySql.createPool({
   connectionLimit: 100,
   database: "mydb",
-  host: "174.2.74.56",
-  // host: "10.0.0.145",
+  host: "10.0.0.145",
   user: "root",
-  password: "cmpt370pass"
+  password: "12345"
 })
 
 
@@ -154,6 +152,27 @@ app.get("/getexpensedata", (req, res) => {
 
       if (!err) {
         res.send({ rows });
+      }
+      else {
+        console.log(err);
+      }
+    })
+  })
+})
+
+
+
+// pull all data from the consumption table
+app.get("/getusage", (req, res) => {
+
+  pool.getConnection((err, connection) => {
+
+    if (err) throw err;
+
+    connection.query("SELECT * FROM consumption", (err, rows) => {
+
+      if (!err) {
+        res.send({rows});
       }
       else {
         console.log(err);

@@ -5,9 +5,9 @@ var path = require("path");
 const fs = require('fs')
 
 
-const PORT = 3697
+const PORT = 3699
 const app = express()
-const HOST = '10.0.0.145';
+const HOST = '174.2.74.56';
 
 
 
@@ -15,14 +15,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-
 // create connection with mydb in mysql
 const pool = mySql.createPool({
   connectionLimit: 100,
   database: "mydb",
-  host: "10.0.0.145",
+  host: "174.2.74.56",
   user: "root",
-  password: "12345"
+  password: "cmpt370pass"
 })
 
 
@@ -136,6 +135,46 @@ app.get('/getinventory', (req, res) => {
     })
   })
 })
+
+
+
+
+// sort.html 
+// get rows in ascending or descending order
+app.get('/getsort:id', (req, res) => {
+
+
+  console.log("CONNECTED");
+
+  pool.getConnection((err, connection) => {
+
+
+    var sort_by = req.params.id;
+    var a = sort_by.slice(3);
+    console.log(a)
+    var querya = 'SELECT * FROM inventory ORDER BY '+a+'';
+    console.log(querya);
+
+    if (err) throw err;
+    console.log("CONNECTION ESTABLISHED");
+
+    connection.query(querya, (err, rows) => {
+      connection.release();
+
+      if (!err) {
+        res.send({ rows });
+      }
+      else {
+        console.log(err);
+      }
+    })
+  })
+})
+
+
+
+
+
 
 
 

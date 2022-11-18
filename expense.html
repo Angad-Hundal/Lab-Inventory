@@ -25,7 +25,7 @@
 
     <div>
         <label> Current Year Spent: </label>
-        <label> 3600</label>
+        <label id="yearly"></label>
     </div>
     <br>
 
@@ -44,11 +44,11 @@
             http.open("GET", url, true);
             http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             http.addEventListener('error', function (event) {
-               alert ("something went wrong while getting");
+                alert("something went wrong while getting");
             });
 
-            http.onreadystatechange = function() { 
-                if(http.readyState == 4 && http.status == 200) {
+            http.onreadystatechange = function () {
+                if (http.readyState == 4 && http.status == 200) {
                     var expenses = http.responseText;
 
                     console.log("state changed");
@@ -69,46 +69,55 @@
 
 
                     // fill the yearlyExpenses array with the expenses for each month of the target year
-                    yearlyExpenses[0]  = rows_of_table[targetYear]["Jan"];
-                    yearlyExpenses[1]  = rows_of_table[targetYear]["Feb"];
-                    yearlyExpenses[2]  = rows_of_table[targetYear]["Mar"];
-                    yearlyExpenses[3]  = rows_of_table[targetYear]["Apr"];
-                    yearlyExpenses[4]  = rows_of_table[targetYear]["May"];
-                    yearlyExpenses[5]  = rows_of_table[targetYear]["Jun"];
-                    yearlyExpenses[6]  = rows_of_table[targetYear]["Jul"];
-                    yearlyExpenses[7]  = rows_of_table[targetYear]["Aug"];
-                    yearlyExpenses[8]  = rows_of_table[targetYear]["Sept"];
-                    yearlyExpenses[9]  = rows_of_table[targetYear]["Oct"];
+                    yearlyExpenses[0] = rows_of_table[targetYear]["Jan"];
+                    yearlyExpenses[1] = rows_of_table[targetYear]["Feb"];
+                    yearlyExpenses[2] = rows_of_table[targetYear]["Mar"];
+                    yearlyExpenses[3] = rows_of_table[targetYear]["Apr"];
+                    yearlyExpenses[4] = rows_of_table[targetYear]["May"];
+                    yearlyExpenses[5] = rows_of_table[targetYear]["Jun"];
+                    yearlyExpenses[6] = rows_of_table[targetYear]["Jul"];
+                    yearlyExpenses[7] = rows_of_table[targetYear]["Aug"];
+                    yearlyExpenses[8] = rows_of_table[targetYear]["Sept"];
+                    yearlyExpenses[9] = rows_of_table[targetYear]["Oct"];
                     yearlyExpenses[10] = rows_of_table[targetYear]["Nov"];
                     yearlyExpenses[11] = rows_of_table[targetYear]["Dec"];
 
 
                     console.log(yearlyExpenses);
 
-                    // set bar graph parameters
-            var xValues = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-            var barColors = "Blue";
+                    var total = 0;
+                    for (var i = 0; i < 12; i++) {
+                        total += yearlyExpenses[i];
+                    }
 
-            // create the bar graph
-            new Chart("expenseChart", {
-                type: "bar",
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                        backgroundColor: barColors,
-                        data: yearlyExpenses
-                    }]
-                },
-                options: {
-                    legend: { display: false },
-                }
-            });
+                    console.log('yearly: ' + total)
+
+                    document.getElementById('yearly').innerHTML = total;
+
+                    // set bar graph parameters
+                    var xValues = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+                    var barColors = "Blue";
+
+                    // create the bar graph
+                    new Chart("expenseChart", {
+                        type: "bar",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: yearlyExpenses
+                            }]
+                        },
+                        options: {
+                            legend: { display: false },
+                        }
+                    });
 
                 }
             }
 
-            
-            
+
+
 
 
             http.send();
@@ -117,7 +126,7 @@
         getExpenseData();
     </script>
 
-    <button onclick="parent.location='all.html'" > Home </button>
+    <button onclick="parent.location='all.html'"> Home </button>
 </body>
 
 </html>

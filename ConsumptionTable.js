@@ -1,5 +1,6 @@
 console.log("file accessed");
 
+// function to create a table showing all the data on consumption stored in the server
 function createTable(row_data) {
     console.log("creating table");
     // create the <table> element
@@ -48,6 +49,7 @@ function createTable(row_data) {
 
 
 
+// finds the total ammount spent for the entire table
 function getTotals(rowData) {
 
     let numRows = rowData.length; // the number of rown in the table
@@ -73,6 +75,7 @@ function getTotals(rowData) {
 
 
 
+// creates a table with the total usage of each individual item
 function totalUsageTable(rowData) {
     let numRows = rowData.length; // number of rown in the big table
 
@@ -150,6 +153,7 @@ function totalUsageTable(rowData) {
 
 
 
+// function which pulls the data from the server then calls the other functions to display it
 function getUsage() {
 
     console.log("Get usage working")

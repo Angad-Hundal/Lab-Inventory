@@ -21,7 +21,7 @@ function createTable(row_data) {
 
     // get the number of rows from the server
     numRows = row_data.length;
-    
+
     console.log("number of rows:" + numRows);
     // create rows
     for (let i = 0; i < numRows; i++) {
@@ -36,7 +36,7 @@ function createTable(row_data) {
         }
         console.log("row data:" + row_data[0][0]);
         tableBody.appendChild(row);
-    } 
+    }
 
     // add table body to table
     table.appendChild(tableBody);
@@ -55,10 +55,10 @@ function getTotals(rowData) {
     let numRows = rowData.length; // the number of rown in the table
 
     let totalSpending = 0; // variable to track total spending in the entire table
-    
+
     // for loop adds the total cost of what was removed in each entry of the table to totalSpending
     for (i = 0; i < numRows; i++) {
-        let cost = rowData[i]["Quantity Removed"] * rowData[i]["Cost"]
+        let cost = parseInt(rowData[i]["Cost"]);
         totalSpending += cost;
     }
 
@@ -135,7 +135,7 @@ function totalUsageTable(rowData) {
             const quantityDataItem = document.createElement("td");
             const quantityData = document.createTextNode(totalConsumed);
             quantityDataItem.appendChild(quantityData);
-            row.appendChild(quantityDataItem);            
+            row.appendChild(quantityDataItem);
 
             // add the current item to the list of viewed items (we don't need to look at it again)
             viewedItems.push(currentItem);
@@ -162,9 +162,9 @@ function getUsage() {
 
     http.open('GET', url, true);
     http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    http.addEventListener('error', function (event) { alert ("something went wrong while getting"); });
+    http.addEventListener('error', function (event) { alert("something went wrong while getting"); });
 
-    http.onreadystatechange = function() {
+    http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
             let table = http.responseText;
 
@@ -185,7 +185,7 @@ function getUsage() {
             // create a button to return to the home page
             const homeButton = document.createElement("button");
             homeButton.innerHTML = "Home";
-            homeButton.onclick = function() {
+            homeButton.onclick = function () {
                 parent.location = "all.html"
             }
             document.body.appendChild(homeButton);

@@ -57,7 +57,15 @@
                     var object = JSON.parse(expenses);
                     var rows_of_table = object["rows"];
 
-                    let targetYear = 0; // select which year to make a graph of, here using the oldest  year (row 0)
+                    // get the total number of years (the number of columns in the table)
+                    let numYears = 0;
+                    while (rows_of_table[numYears]) {
+                        numYears += 1;
+                    }
+                    numYears -= 1;
+
+
+                    let targetYear = numYears; // select which year to make a graph of, here using the most recent yer
 
 
                     // fill the yearlyExpenses array with the expenses for each month of the target year

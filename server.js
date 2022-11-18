@@ -83,7 +83,7 @@ app.post('/signoff', (req, res) => {
   const dataForm = req.body;
 
   var id = req.body.id;
-  var take_out_number = req.body.take_out_number;
+  let take_out_number = req.body.take_out_number;
   var used = req.body.used;
 
   console.log(id)
@@ -91,13 +91,12 @@ app.post('/signoff', (req, res) => {
   console.log(used)
 
 
-
   pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log("CONNECTION ESTABLISHED")
 
+    // updates inventory table quantity
     var inv = 'UPDATE inventory SET quantity = quantity - ' + take_out_number + ' WHERE id=' + id;
-
     connection.query(inv, dataForm, (err, rows) => {
 
       if (err) {
@@ -105,16 +104,28 @@ app.post('/signoff', (req, res) => {
       }
     })
 
-    var con = 'INSERT INTO consumption SET ?';
+    // gets updated row and fills required fields for consumption table
+    var r = 'SELECT * FROM inventory WHERE id=' + id;
+    connection.query(r, function (err, result, fields) {
 
-    data = { 'Item ID': id, 'Item Name': 'test', 'Room': '500', 'Quantity Removed': take_out_number, 'Quantity Left': '50', 'Date Removed': 'date', 'User ID': '05' };
+      var row = result[0];
 
-    connection.query(con, data, (err, rows) => {
+      // adds row to consumption table
+      var con = 'INSERT INTO consumption SET ?';
+      data = { 'Item ID': row.id, 'Item Name': row.name, 'Room': row.room, 'Quantity Removed': take_out_number, 'Quantity Left': row.quantity, 'Units': row.units, 'Cost': row.cost * take_out_number, 'Date Removed': 'date', 'User ID': '05' };
+      connection.query(con, data, (err, rows) => {
+
+        if (err) {
+          console.log(err);
+        }
+      })
+
       connection.release();
 
       if (err) {
         console.log(err);
       }
+
     })
 
   })
@@ -167,7 +178,7 @@ app.get('/getsort:id', (req, res) => {
     var sort_by = req.params.id;
     var a = sort_by.slice(3);
     console.log(a)
-    var querya = 'SELECT * FROM inventory ORDER BY '+a+'';
+    var querya = 'SELECT * FROM inventory ORDER BY ' + a + '';
     console.log(querya);
 
     if (err) throw err;

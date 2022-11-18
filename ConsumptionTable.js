@@ -18,7 +18,7 @@ function createTable(row_data) {
     }
     tableBody.appendChild(topRow);
 
-    // get the number of rows from the server (for now assume 0)
+    // get the number of rows from the server
     numRows = row_data.length;
     
     console.log("number of rows:" + numRows);
@@ -45,6 +45,32 @@ function createTable(row_data) {
 }
 
 
+
+
+function getTotals(rowData) {
+
+    let numRows = rowData.length; // the number of rown in the table
+
+    let totalSpending = 0; // variable to track total spending in the entire table
+    
+    // for loop adds the total cost of what was removed in each entry of the table to totalSpending
+    for (i = 0; i < numRows; i++) {
+        let cost = rowData[i]["Quantity Removed"] * rowData[i]["Cost"]
+        totalSpending += cost;
+    }
+
+    // add a label with the total spending to the html document
+    const div = document.createElement("div");
+    const label = document.createElement("label");
+    const text = document.createTextNode("Total Spending: " + totalSpending);
+    label.appendChild(text);
+    div.appendChild(label);
+    document.body.appendChild(div);
+}
+
+
+
+
 function getUsage() {
 
     console.log("Get usage working")
@@ -64,6 +90,8 @@ function getUsage() {
             let object = JSON.parse(table);
             let rows_of_consumption_table = object["rows"];
 
+            // print the total spending in the html document
+            getTotals(rows_of_consumption_table);
 
             // create the table with the data pulled from the database
             createTable(rows_of_consumption_table);

@@ -84,6 +84,7 @@ app.post('/signoff', (req, res) => {
 
   var id = req.body.id;
   let take_out_number = req.body.take_out_number;
+  let user = req.body.user;
   var used = req.body.used;
 
   console.log(id)
@@ -115,7 +116,7 @@ app.post('/signoff', (req, res) => {
 
       // adds row to consumption table
       var con = 'INSERT INTO consumption SET ?';
-      data = { 'Item ID': row.id, 'Item Name': row.name, 'Room': row.room, 'Quantity Removed': take_out_number, 'Quantity Left': row.quantity, 'Units': row.units, 'Cost': row.cost * take_out_number, 'Date Removed': date, 'User ID': '05' };
+      data = { 'Item ID': row.id, 'Item Name': row.name, 'Room': row.room, 'Quantity Removed': take_out_number, 'Quantity Left': row.quantity, 'Units': row.units, 'Cost': row.cost * take_out_number, 'Date Removed': date, 'User ID': user };
       connection.query(con, data, (err, rows) => {
 
         if (err) {

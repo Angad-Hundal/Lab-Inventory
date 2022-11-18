@@ -30,7 +30,7 @@
 
 
             // chane for a 
-            var params = 'id=' + document.getElementById("id").value + '&take_out_number=' + document.getElementById("take_out_number").value;
+            var params = 'id=' + document.getElementById("id").value + '&take_out_number=' + document.getElementById("take_out_number").value + '&user=' + document.getElementById('user').value;
 
             http.open('POST', url, true);
             console.log(params);
@@ -65,6 +65,12 @@
 
 
     <h2> TAKE OUT THE ITEM: </h2>
+
+    <div>
+        <label for="userID"> User Id: </label>
+        <input id="user" type="number">
+    </div>
+    <br>
 
     <div>
         <label for="id"> Product Id: </label>

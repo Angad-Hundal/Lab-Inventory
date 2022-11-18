@@ -9,38 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            overflow: auto;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown a:hover {
-            background-color: #ddd;
-        }
-
-        .show {
-            display: block;
-        }
-    </style>
 </head>
 
 <br> </br>
@@ -49,14 +17,12 @@
 
 <body>
 
-    <div>
-        <button onclick="selectYear()" class="dropbtn"> Select Year </button>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#2022">2022</a>
-            <a href="#2021">2021</a>
-            <a href="#2020">2020</a>
-        </div>
-    </div>
+    <select id="selectYear" name="selectYear" onchange="getExpenseData(this.value)">
+        <option value="2022"> 2022 </option>
+        <option value="2021"> 2021 </option>
+        <option value="2020"> 2020 </option>
+    </select>
+    <br>
     <br>
 
     <div>
@@ -74,29 +40,10 @@
     <canvas id="expenseChart" style="width:100%;max-width:700px"></canvas>
 
     <script>
-
-        function selectYear() {
-            document.getElementById('myDropdown').classList.toggle('show');
-        }
-
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-
-
         // global variable that will hold the expense data of the year we select later
         let yearlyExpenses = [0, 0, 650, 200, 100, 200, 350, 100, 0, 0, 100, 400];
 
-        function getExpenseData() {
+        function getExpenseData(year) {
             var http = new XMLHttpRequest;
             var url = "/getexpensedata"
 
@@ -116,16 +63,7 @@
                     var object = JSON.parse(expenses);
                     var rows_of_table = object["rows"];
 
-                    // get the total number of years (the number of columns in the table)
-                    let numYears = 0;
-                    while (rows_of_table[numYears]) {
-                        numYears += 1;
-                    }
-                    numYears -= 1;
-
-
-                    let targetYear = numYears; // select which year to make a graph of, here using the most recent yer
-
+                    let targetYear = year - 2020; // select which year to make a graph of, here using the most recent yer
 
                     // fill the yearlyExpenses array with the expenses for each month of the target year
                     yearlyExpenses[0] = rows_of_table[targetYear]["Jan"];
@@ -183,7 +121,7 @@
             http.send();
         }
 
-        getExpenseData();
+        getExpenseData(2022);
     </script>
 
     <button onclick="parent.location='all.html'"> Home </button>

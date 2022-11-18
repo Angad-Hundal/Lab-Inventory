@@ -90,22 +90,33 @@ app.post('/signoff', (req, res) => {
   console.log(take_out_number)
   console.log(used)
 
-  
 
-   pool.getConnection((err, connection) => {
+
+  pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log("CONNECTION ESTABLISHED")
 
-    var sql = "UPDATE inventory SET used = '"+take_out_number+"' WHERE id='"+id+"'";
+    var inv = 'UPDATE inventory SET quantity = quantity - ' + take_out_number + ' WHERE id=' + id;
 
-    connection.query(sql, dataForm, (err, rows) => {
+    connection.query(inv, dataForm, (err, rows) => {
 
+      if (err) {
+        console.log(err);
+      }
+    })
+
+    var con = 'INSERT INTO consumption SET ?';
+
+    data = { 'Item ID': id, 'Item Name': 'test', 'Room': '500', 'Quantity Removed': take_out_number, 'Quantity Left': '50', 'Date Removed': 'date', 'User ID': '05' };
+
+    connection.query(con, data, (err, rows) => {
       connection.release();
 
       if (err) {
         console.log(err);
       }
     })
+
   })
 })
 
@@ -211,7 +222,7 @@ app.get("/getusage", (req, res) => {
     connection.query("SELECT * FROM consumption", (err, rows) => {
 
       if (!err) {
-        res.send({rows});
+        res.send({ rows });
       }
       else {
         console.log(err);

@@ -112,7 +112,7 @@ app.post('/signoff', (req, res) => {
       var row = result[0];
 
       const d = new Date();
-      var date = d.getMonth() + '/' + d.getDay() + '/' + d.getFullYear();
+      var date = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
 
       // adds row to consumption table
       var con = 'INSERT INTO consumption SET ?';

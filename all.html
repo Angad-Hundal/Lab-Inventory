@@ -41,7 +41,11 @@ var http = new XMLHttpRequest();
     
 
                     table = document.getElementById("table");
+                    table2 = document.getElementById("table2");
+                    t2_row = 1
+
                     t_row = 1
+
 
 
                     for (var i = 0; i < array_of_dict.length; i++){
@@ -77,6 +81,56 @@ var http = new XMLHttpRequest();
                         var cell10 = newRow.insertCell(10);
                         var cell11 = newRow.insertCell(11);
 
+
+                    }
+
+
+                    for (var i = 0; i < array_of_dict.length; i++){
+
+
+                        if (array_of_dict[i]["quantity"] < array_of_dict[i]["recommended_quantity"] ){
+
+
+                            console.log("sbjevjer")
+                            console.log(array_of_dict[i]["id"])
+                            console.log(array_of_dict[i]["quantity"])
+                            console.log(array_of_dict[i]["recommended_quantity"])
+
+                            table2.rows[t2_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                            table2.rows[t2_row].cells[1].innerHTML  = array_of_dict[i]["name"]
+                            table2.rows[t2_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                            table2.rows[t2_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                            table2.rows[t2_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                            table2.rows[t2_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                            table2.rows[t2_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                            table2.rows[t2_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                            table2.rows[t2_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                            table2.rows[t2_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
+                            table2.rows[t2_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
+                            table2.rows[t2_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
+
+
+                            t2_row = t2_row + 1;
+
+                            var newRow2 = table2.insertRow(table2.length);
+
+                            var cell10 = newRow2.insertCell(0);
+                            var cell11 = newRow2.insertCell(1);
+                            var cell12 = newRow2.insertCell(2);
+                            var cell13 = newRow2.insertCell(3);
+                            var cell14 = newRow2.insertCell(4);
+                            var cell15 = newRow2.insertCell(5);
+                            var cell16 = newRow2.insertCell(6);
+                            var cell17 = newRow2.insertCell(7);
+                            var cell18 = newRow2.insertCell(8);
+                            var cell19 = newRow2.insertCell(9);
+                            var cell110 = newRow2.insertCell(10);
+                            var cell111 = newRow2.insertCell(11);
+
+}
+
+
+
                     }
            	}
     };
@@ -95,6 +149,59 @@ var http = new XMLHttpRequest();
 <button onclick="parent.location='signoff.html'" > Sign item </button>
 
 <button onclick="parent.location='expense.html'"> Expense </button>
+
+<button onclick="parent.location='order.html'"> Order </button>
+
+
+
+<!-- Warning and alert  -->
+
+<h2> Warnings and Alert:  </h2>
+<h5> Following items are less in stock.</h5>
+
+<table id="table2" border="2">
+
+
+    <!-- ROW 0 That is the heading -->
+    <tr id="ttr2">
+        <th>ID</th>
+        <th>NAME</th>
+        <th>Quantity</th>
+        <th>Units</th>
+        <th>Description</th>
+        <th>Log Number</th>
+        <th>Courses</th>
+        <th>Comments</th>
+        <th>Room</th>
+        <th>Supplier</th>
+        <th>Recommended Quantity</th>
+        <th>Cost per item</th>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+
+
+
+
+</table>
+
+
+
+
 
 
 <h2> ALL ITEMS: </h2>

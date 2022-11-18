@@ -5,7 +5,7 @@ var path = require("path");
 const fs = require('fs')
 
 
-const PORT = 3699
+const PORT = 3701
 const app = express()
 const HOST = '174.2.74.56';
 
@@ -137,6 +137,10 @@ app.get('/getinventory', (req, res) => {
 })
 
 
+// order
+
+
+
 
 
 // sort.html 
@@ -170,12 +174,6 @@ app.get('/getsort:id', (req, res) => {
     })
   })
 })
-
-
-
-
-
-
 
 
 

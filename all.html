@@ -1,12 +1,12 @@
 <!Doctype html>
-<html lang="en"> 
+<html lang="en">
 
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 
@@ -19,233 +19,233 @@
 
 
 
-var http = new XMLHttpRequest();
+        var http = new XMLHttpRequest();
 
-            var url = '/getinventory';
-
-
-            http.open('GET', url, true);
-             http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-             http.addEventListener('error', function (event) {
-                alert ("something went wrong while getting");
-             });
+        var url = '/getinventory';
 
 
-             http.onreadystatechange = function() { 
-                if(http.readyState == 4 && http.status == 200) {
-             
-                    var inventoryItem = http.responseText;
-                
-                    var obj = JSON.parse(inventoryItem);  // dict with one value and key is rows
-                    array_of_dict = obj["rows"]      // array of dict
-    
-
-                    table = document.getElementById("table");
-                    table2 = document.getElementById("table2");
-                    t2_row = 1
-
-                    t_row = 1
+        http.open('GET', url, true);
+        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        http.addEventListener('error', function (event) {
+            alert("something went wrong while getting");
+        });
 
 
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
 
-                    for (var i = 0; i < array_of_dict.length; i++){
-                        
+                var inventoryItem = http.responseText;
 
-                        table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
-                        table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
-                        table.rows[t_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
-                        table.rows[t_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
-                        table.rows[t_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
-                        table.rows[t_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
-                        table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
-                        table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
-                        table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
-                        table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
-                        table.rows[t_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
-                        table.rows[t_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
-
-                        t_row = t_row + 1;
-
-                        var newRow = table.insertRow(table.length);
-
-                        var cell0 = newRow.insertCell(0);
-                        var cell1 = newRow.insertCell(1);
-                        var cell2 = newRow.insertCell(2);
-                        var cell3 = newRow.insertCell(3);
-                        var cell4 = newRow.insertCell(4);
-                        var cell5 = newRow.insertCell(5);
-                        var cell6 = newRow.insertCell(6);
-                        var cell7 = newRow.insertCell(7);
-                        var cell8 = newRow.insertCell(8);
-                        var cell9 = newRow.insertCell(9);
-                        var cell10 = newRow.insertCell(10);
-                        var cell11 = newRow.insertCell(11);
+                var obj = JSON.parse(inventoryItem);  // dict with one value and key is rows
+                array_of_dict = obj["rows"]      // array of dict
 
 
-                    }
+                table = document.getElementById("table");
+                table2 = document.getElementById("table2");
+                t2_row = 1
+
+                t_row = 1
 
 
-                    for (var i = 0; i < array_of_dict.length; i++){
+
+                for (var i = 0; i < array_of_dict.length; i++) {
 
 
-                        if (array_of_dict[i]["quantity"] < array_of_dict[i]["recommended_quantity"] ){
+                    table.rows[t_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                    table.rows[t_row].cells[1].innerHTML = temp_id = array_of_dict[i]["name"]
+                    table.rows[t_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                    table.rows[t_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                    table.rows[t_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                    table.rows[t_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                    table.rows[t_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                    table.rows[t_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                    table.rows[t_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                    table.rows[t_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
+                    table.rows[t_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
+                    table.rows[t_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
+
+                    t_row = t_row + 1;
+
+                    var newRow = table.insertRow(table.length);
+
+                    var cell0 = newRow.insertCell(0);
+                    var cell1 = newRow.insertCell(1);
+                    var cell2 = newRow.insertCell(2);
+                    var cell3 = newRow.insertCell(3);
+                    var cell4 = newRow.insertCell(4);
+                    var cell5 = newRow.insertCell(5);
+                    var cell6 = newRow.insertCell(6);
+                    var cell7 = newRow.insertCell(7);
+                    var cell8 = newRow.insertCell(8);
+                    var cell9 = newRow.insertCell(9);
+                    var cell10 = newRow.insertCell(10);
+                    var cell11 = newRow.insertCell(11);
 
 
-                            console.log("sbjevjer")
-                            console.log(array_of_dict[i]["id"])
-                            console.log(array_of_dict[i]["quantity"])
-                            console.log(array_of_dict[i]["recommended_quantity"])
-
-                            table2.rows[t2_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
-                            table2.rows[t2_row].cells[1].innerHTML  = array_of_dict[i]["name"]
-                            table2.rows[t2_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
-                            table2.rows[t2_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
-                            table2.rows[t2_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
-                            table2.rows[t2_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
-                            table2.rows[t2_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
-                            table2.rows[t2_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
-                            table2.rows[t2_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
-                            table2.rows[t2_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
-                            table2.rows[t2_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
-                            table2.rows[t2_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
+                }
 
 
-                            t2_row = t2_row + 1;
-
-                            var newRow2 = table2.insertRow(table2.length);
-
-                            var cell10 = newRow2.insertCell(0);
-                            var cell11 = newRow2.insertCell(1);
-                            var cell12 = newRow2.insertCell(2);
-                            var cell13 = newRow2.insertCell(3);
-                            var cell14 = newRow2.insertCell(4);
-                            var cell15 = newRow2.insertCell(5);
-                            var cell16 = newRow2.insertCell(6);
-                            var cell17 = newRow2.insertCell(7);
-                            var cell18 = newRow2.insertCell(8);
-                            var cell19 = newRow2.insertCell(9);
-                            var cell110 = newRow2.insertCell(10);
-                            var cell111 = newRow2.insertCell(11);
-
-}
+                for (var i = 0; i < array_of_dict.length; i++) {
 
 
+                    if (array_of_dict[i]["quantity"] < array_of_dict[i]["recommended_quantity"]) {
+
+
+                        console.log("sbjevjer")
+                        console.log(array_of_dict[i]["id"])
+                        console.log(array_of_dict[i]["quantity"])
+                        console.log(array_of_dict[i]["recommended_quantity"])
+
+                        table2.rows[t2_row].cells[0].innerHTML = temp_id = array_of_dict[i]["id"]
+                        table2.rows[t2_row].cells[1].innerHTML = array_of_dict[i]["name"]
+                        table2.rows[t2_row].cells[2].innerHTML = temp_id = array_of_dict[i]["quantity"]
+                        table2.rows[t2_row].cells[3].innerHTML = temp_id = array_of_dict[i]["units"]
+                        table2.rows[t2_row].cells[4].innerHTML = temp_id = array_of_dict[i]["description"]
+                        table2.rows[t2_row].cells[5].innerHTML = temp_id = array_of_dict[i]["log_number"]
+                        table2.rows[t2_row].cells[6].innerHTML = temp_id = array_of_dict[i]["courses"]
+                        table2.rows[t2_row].cells[7].innerHTML = temp_id = array_of_dict[i]["comments"]
+                        table2.rows[t2_row].cells[8].innerHTML = temp_id = array_of_dict[i]["room"]
+                        table2.rows[t2_row].cells[9].innerHTML = temp_id = array_of_dict[i]["suplier"]
+                        table2.rows[t2_row].cells[10].innerHTML = temp_id = array_of_dict[i]["recommended_quantity"]
+                        table2.rows[t2_row].cells[11].innerHTML = temp_id = array_of_dict[i]["cost"]
+
+
+                        t2_row = t2_row + 1;
+
+                        var newRow2 = table2.insertRow(table2.length);
+
+                        var cell10 = newRow2.insertCell(0);
+                        var cell11 = newRow2.insertCell(1);
+                        var cell12 = newRow2.insertCell(2);
+                        var cell13 = newRow2.insertCell(3);
+                        var cell14 = newRow2.insertCell(4);
+                        var cell15 = newRow2.insertCell(5);
+                        var cell16 = newRow2.insertCell(6);
+                        var cell17 = newRow2.insertCell(7);
+                        var cell18 = newRow2.insertCell(8);
+                        var cell19 = newRow2.insertCell(9);
+                        var cell110 = newRow2.insertCell(10);
+                        var cell111 = newRow2.insertCell(11);
 
                     }
-           	}
-    };
-
-    http.send();
-
- </script>
-
-
-<button onclick="parent.location='search.html'" > Search </button>
-
-<button onclick="parent.location='items.html'"> Add Item </button>
-
-<button onclick="parent.location='sort.html'"> Sort </button>
-
-<button onclick="parent.location='signoff.html'" > Sign item </button>
-
-<button onclick="parent.location='expense.html'"> Expenses </button>
-
-<button onclick="parent.location='consumption.html'"> Consumption </button>
-
-<button onclick="parent.location='order.html'"> Order </button>
 
 
 
-<!-- Warning and alert  -->
+                }
+            }
+        };
 
-<h2> Warnings and Alert:  </h2>
-<h5> Following items are less in stock.</h5>
+        http.send();
 
-<table id="table2" border="2">
+    </script>
 
 
-    <!-- ROW 0 That is the heading -->
-    <tr id="ttr2">
-        <th>ID</th>
-        <th>NAME</th>
-        <th>Quantity</th>
-        <th>Units</th>
-        <th>Description</th>
-        <th>Log Number</th>
-        <th>Courses</th>
-        <th>Comments</th>
-        <th>Room</th>
-        <th>Supplier</th>
-        <th>Recommended Quantity</th>
-        <th>Cost per item</th>
-    </tr>
+    <button onclick="parent.location='search.html'"> Search </button>
 
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+    <button onclick="parent.location='items.html'"> Add Item </button>
+
+    <button onclick="parent.location='sort.html'"> Sort </button>
+
+    <button onclick="parent.location='signoff.html'"> Remove item </button>
+
+    <button onclick="parent.location='expense.html'"> Expenses </button>
+
+    <button onclick="parent.location='consumption.html'"> Consumption </button>
+
+    <button onclick="parent.location='order.html'"> Order </button>
 
 
 
+    <!-- Warning and alert  -->
+
+    <h2> Warnings and Alert: </h2>
+    <h5> Following items are less in stock.</h5>
+
+    <table id="table2" border="2">
 
 
-</table>
+        <!-- ROW 0 That is the heading -->
+        <tr id="ttr2">
+            <th>ID</th>
+            <th>NAME</th>
+            <th>Quantity</th>
+            <th>Units</th>
+            <th>Description</th>
+            <th>Log Number</th>
+            <th>Courses</th>
+            <th>Comments</th>
+            <th>Room</th>
+            <th>Supplier</th>
+            <th>Recommended Quantity</th>
+            <th>Cost per item</th>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
 
 
 
 
 
-
-<h2> ALL ITEMS: </h2>
-
-
-<table id="table" border="2">
-
-    <!-- ROW 0 That is the heading -->
-    <tr id="ttr">
-        <th>ID</th>
-        <th>NAME</th>
-        <th>Quantity</th>
-        <th>Units</th>
-        <th>Description</th>
-        <th>Log Number</th>
-        <th>Courses</th>
-        <th>Comments</th>
-        <th>Room</th>
-        <th>Supplier</th>
-        <th>Recommended Quantity</th>
-        <th>Cost per item</th>
-    </tr>
-
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+    </table>
 
 
-</table>
 
-<!-- <button onclick="parent.location='search.html'" > Search </button>
+
+
+
+    <h2> ALL ITEMS: </h2>
+
+
+    <table id="table" border="2">
+
+        <!-- ROW 0 That is the heading -->
+        <tr id="ttr">
+            <th>ID</th>
+            <th>NAME</th>
+            <th>Quantity</th>
+            <th>Units</th>
+            <th>Description</th>
+            <th>Log Number</th>
+            <th>Courses</th>
+            <th>Comments</th>
+            <th>Room</th>
+            <th>Supplier</th>
+            <th>Recommended Quantity</th>
+            <th>Cost per item</th>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+
+    </table>
+
+    <!-- <button onclick="parent.location='search.html'" > Search </button>
 
 <button onclick="parent.location='items.html'"> Add Item </button>
 

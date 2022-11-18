@@ -19,7 +19,7 @@
 
     <div>
         <label> Current Month Spent: </label>
-        <label> 100</label>
+        <label id="monthly"></label>
     </div>
     <br>
 
@@ -90,9 +90,10 @@
                         total += yearlyExpenses[i];
                     }
 
-                    console.log('yearly: ' + total)
+                    const d = new Date();
 
                     document.getElementById('yearly').innerHTML = total;
+                    document.getElementById('monthly').innerHTML = yearlyExpenses[d.getMonth()]
 
                     // set bar graph parameters
                     var xValues = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];

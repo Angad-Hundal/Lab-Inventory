@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 
@@ -20,40 +20,40 @@
     <script type="text/javascript">
 
 
-        function takeOut(){
-
-            
-        console.log("Reaching post");
-        console.log("outside one")
-        var http = new XMLHttpRequest();
-        var url = '/signoff';
+        function takeOut() {
 
 
-        // chane for a 
-        var params ='id=' + document.getElementById("id").value + '&take_out_number=' + document.getElementById("take_out_number").value ;
+            console.log("Reaching post");
+            console.log("outside one")
+            var http = new XMLHttpRequest();
+            var url = '/signoff';
 
-        http.open('POST', url, true);
-        console.log(params);
+
+            // chane for a 
+            var params = 'id=' + document.getElementById("id").value + '&take_out_number=' + document.getElementById("take_out_number").value;
+
+            http.open('POST', url, true);
+            console.log(params);
 
             http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            http.addEventListener('error', function (event){
+            http.addEventListener('error', function (event) {
                 alert("Something went wrong while adding an item.");
             });
 
             console.log("above on ready")
 
-            http.onreadystatechange = function(){
+            http.onreadystatechange = function () {
 
                 console.log("above status")
                 console.log(http.status)
                 console.log("below status")
-            
 
-                if(http.readyState == 4 && http.status == 200) {
-             
+
+                if (http.readyState == 4 && http.status == 200) {
+
                     var response = http.responseText;
                     alert(response);
-             }
+                }
             };
 
 
@@ -81,6 +81,7 @@
     <br>
 
     <button onclick="takeOut()"> Take out </button>
+    <button onclick="parent.location='all.html'"> Home </button>
 
 </body>
 

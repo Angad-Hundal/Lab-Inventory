@@ -110,9 +110,12 @@ app.post('/signoff', (req, res) => {
 
       var row = result[0];
 
+      const d = new Date();
+      var date = d.getMonth() + '/' + d.getDay() + '/' + d.getFullYear();
+
       // adds row to consumption table
       var con = 'INSERT INTO consumption SET ?';
-      data = { 'Item ID': row.id, 'Item Name': row.name, 'Room': row.room, 'Quantity Removed': take_out_number, 'Quantity Left': row.quantity, 'Units': row.units, 'Cost': row.cost * take_out_number, 'Date Removed': 'date', 'User ID': '05' };
+      data = { 'Item ID': row.id, 'Item Name': row.name, 'Room': row.room, 'Quantity Removed': take_out_number, 'Quantity Left': row.quantity, 'Units': row.units, 'Cost': row.cost * take_out_number, 'Date Removed': date, 'User ID': '05' };
       connection.query(con, data, (err, rows) => {
 
         if (err) {

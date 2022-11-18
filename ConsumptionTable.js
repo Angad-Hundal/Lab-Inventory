@@ -8,7 +8,7 @@ function createTable(row_data) {
 
     // create the table headers
     const topRow = document.createElement("tr");
-    const headerContent = ["Item ID", "Item Name", "Room", "Quantity Removed", "Quantity Left", "Date Removed", "User ID"]
+    const headerContent = ["Item ID", "Item Name", "Room", "Quantity Removed", "Quantity Left", "Units", "Date Removed", "User ID"]
     const numColumns = headerContent.length;
     for (i = 0; i < numColumns; i++) {
         const header = document.createElement("th");

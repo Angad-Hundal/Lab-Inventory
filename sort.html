@@ -61,6 +61,13 @@
             
                     table = document.getElementById("table");
                     t_row = 1
+                
+                    h = document.getElementById("order_by").value;
+
+                    if(h=="descending"){
+                        console.log(h)
+                        array_of_dict = array_of_dict.reverse();
+                    }
 
                     for (var i = 0; i < array_of_dict.length; i++){
 

@@ -182,13 +182,13 @@ function getUsage() {
             // create a table with the total usage of each item
             totalUsageTable(rows_of_consumption_table);
 
-            // create a button to return to the home page
-            const homeButton = document.createElement("button");
-            homeButton.innerHTML = "Home";
-            homeButton.onclick = function () {
-                parent.location = "all.html"
-            }
-            document.body.appendChild(homeButton);
+            // // create a button to return to the home page
+            // const homeButton = document.createElement("button");
+            // homeButton.innerHTML = "Home";
+            // homeButton.onclick = function () {
+            //     parent.location = "all.html"
+            // }
+            // document.body.appendChild(homeButton);
         }
     }
     http.send();

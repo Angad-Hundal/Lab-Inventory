@@ -5,6 +5,7 @@ function createTable(row_data) {
     console.log("creating table");
     // create the <table> element
     const table = document.createElement("table");
+    table.setAttribute("class", "my-table");
     const tableBody = document.createElement("tbody");
 
     // create the table headers
@@ -65,6 +66,11 @@ function getTotals(rowData) {
     // add a label with the total spending to the html document
     const div = document.createElement("div");
     const label = document.createElement("label");
+
+    label.style.fontSize = "20px";
+    label.style.color = "red";
+    label.setAttribute("id", "total-label");
+
     const text = document.createTextNode("Total Spending: " + totalSpending + "\n");
     label.appendChild(text);
     div.appendChild(label);
@@ -83,6 +89,7 @@ function totalUsageTable(rowData) {
 
     // create the <table> element
     const table = document.createElement("table");
+    table.setAttribute("class", "my-table");
     const tableBody = document.createElement("tbody");
 
     // create the table header
